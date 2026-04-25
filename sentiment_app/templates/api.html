@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference — SentiScope</title>
+  <meta name="description" content="Integrate SentiScope's RESTful sentiment analysis API into your applications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-container">
+
+  <!-- Header -->
+  <header class="app-header">
+    <a href="/" class="logo">
+      <i class="fa-solid fa-brain logo-icon"></i>
+      <span class="logo-text">SentiScope</span>
+    </a>
+    <nav class="main-nav">
+      <a href="/about" class="nav-link">About</a>
+      <a href="/docs"  class="nav-link">Docs</a>
+      <a href="/api"   class="nav-link active">API</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="inner-page">
+    <div class="inner-hero">
+      <div class="hero-eyebrow"><i class="fa-solid fa-circle-dot"></i> API Reference</div>
+      <h1 class="hero-title">RESTful <span class="gradient-text">API Access</span></h1>
+      <p>Integrate SentiScope's intelligence engine directly into your own applications with a simple JSON API.</p>
+    </div>
+
+    <div class="glass-card content-card">
+
+      <!-- Endpoint -->
+      <div class="section-block">
+        <div class="endpoint-tag">
+          <span class="method-badge">POST</span>
+          /analyze
+        </div>
+        <h3><i class="fa-solid fa-code" style="margin-right:.5rem;"></i>Analyze Text</h3>
+        <p>Send a POST request with a JSON body containing a <code style="color:var(--primary);font-size:.875rem;">text</code> field. Returns polarity, subjectivity, and classification results.</p>
+      </div>
+
+      <!-- Request -->
+      <div class="section-block">
+        <h3><i class="fa-solid fa-terminal" style="margin-right:.5rem;"></i>cURL Example</h3>
+        <div class="code-block">
+<span class="cmt"># Request</span>
+<span class="kw">curl</span> -X POST <span class="str">http://localhost:5000/analyze</span> \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{"text": "I love building with SentiScope!"}'</span>
+        </div>
+      </div>
+
+      <!-- Response -->
+      <div class="section-block">
+        <h3><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right:.5rem;"></i>Response Schema</h3>
+        <div class="code-block">
+<span class="cmt">// 200 OK · application/json</span>
+{
+  <span class="key">"sentiment"</span>:           <span class="str">"POSITIVE"</span>,
+  <span class="key">"emoji"</span>:               <span class="str">"😊"</span>,
+  <span class="key">"color_class"</span>:         <span class="str">"positive"</span>,
+  <span class="key">"polarity"</span>:            <span class="num">0.6250</span>,
+  <span class="key">"subjectivity"</span>:        <span class="num">0.6000</span>,
+  <span class="key">"word_count"</span>:          <span class="num">6</span>,
+  <span class="key">"char_count"</span>:          <span class="num">36</span>,
+  <span class="key">"processing_time_ms"</span>:  <span class="num">1.2</span>
+}
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="section-block">
+        <h3><i class="fa-solid fa-triangle-exclamation" style="margin-right:.5rem;"></i>Error Responses</h3>
+        <div class="code-block">
+<span class="cmt">// 400 Bad Request · No text</span>
+{ <span class="key">"error"</span>: <span class="str">"No text provided"</span> }
+
+<span class="cmt">// 400 Bad Request · Too long</span>
+{ <span class="key">"error"</span>: <span class="str">"Text too long. Maximum 5000 characters."</span> }
+        </div>
+      </div>
+
+      <div class="capability-chips">
+        <span class="chip chip-positive"><i class="fa-solid fa-check"></i> No API key required</span>
+        <span class="chip chip-positive"><i class="fa-solid fa-check"></i> &lt; 50ms response time</span>
+        <span class="chip chip-primary"><i class="fa-solid fa-code-branch"></i> JSON schema v1.0</span>
+      </div>
+
+      <a href="/" class="return-btn" style="margin-top:1.75rem;">
+        <i class="fa-solid fa-arrow-left"></i> Return to Analyzer
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="#" id="link-privacy">Privacy</a>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p class="aesthetic-note">The Luminous Observer © 2026</p>
+  </footer>
+
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

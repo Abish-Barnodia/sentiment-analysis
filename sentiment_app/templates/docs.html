@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — SentiScope</title>
+  <meta name="description" content="Learn how to use SentiScope's sentiment analysis platform and understand the scoring metrics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-container">
+
+  <!-- Header -->
+  <header class="app-header">
+    <a href="/" class="logo">
+      <i class="fa-solid fa-brain logo-icon"></i>
+      <span class="logo-text">SentiScope</span>
+    </a>
+    <nav class="main-nav">
+      <a href="/about" class="nav-link">About</a>
+      <a href="/docs"  class="nav-link active">Docs</a>
+      <a href="/api"   class="nav-link">API</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="inner-page">
+    <div class="inner-hero">
+      <div class="hero-eyebrow"><i class="fa-solid fa-circle-dot"></i> Documentation</div>
+      <h1 class="hero-title">Platform <span class="gradient-text">Documentation</span></h1>
+      <p>Everything you need to understand SentiScope's scoring model and integrate it into your workflow.</p>
+    </div>
+
+    <div class="glass-card content-card">
+
+      <div class="section-block">
+        <h3><i class="fa-solid fa-play" style="margin-right:.5rem;"></i>How It Works</h3>
+        <p>Paste any text up to 5,000 characters into the analyzer. SentiScope uses a lexicon-based approach — each word is scored against a curated sentiment dictionary and aggregated to produce a final polarity and subjectivity reading.</p>
+      </div>
+
+      <div class="section-block">
+        <h3><i class="fa-solid fa-chart-bar" style="margin-right:.5rem;"></i>Scoring Metrics</h3>
+
+        <div class="capability-chips">
+          <span class="chip chip-positive">
+            <i class="fa-solid fa-arrows-left-right"></i> Polarity: −1.0 → +1.0
+          </span>
+          <span class="chip chip-primary">
+            <i class="fa-solid fa-eye"></i> Subjectivity: 0.0 → 1.0
+          </span>
+        </div>
+
+        <div class="tech-grid" style="margin-top:1.5rem;">
+          <div class="tech-item">
+            <i class="fa-solid fa-face-smile"></i>
+            <h4>Positive (&gt; 0.1)</h4>
+            <p>Text carries an optimistic or favorable emotional tone.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fa-solid fa-face-meh"></i>
+            <h4>Neutral (−0.1 → 0.1)</h4>
+            <p>Text is factual or emotionally ambiguous. No strong sentiment detected.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fa-solid fa-face-frown"></i>
+            <h4>Negative (&lt; −0.1)</h4>
+            <p>Text carries a pessimistic or unfavorable emotional tone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h3><i class="fa-solid fa-shield" style="margin-right:.5rem;"></i>Privacy</h3>
+        <p>SentiScope is stateless. Your text is processed in memory and immediately discarded — nothing is logged, stored, or transmitted to any third-party service.</p>
+      </div>
+
+      <a href="/" class="return-btn">
+        <i class="fa-solid fa-rocket"></i> Get Started
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="#" id="link-privacy">Privacy</a>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p class="aesthetic-note">The Luminous Observer © 2026</p>
+  </footer>
+
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

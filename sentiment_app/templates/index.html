@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentiScope — AI Sentiment Analysis</title>
+  <meta name="description" content="High-precision sentiment analysis powered by NLP. Analyze polarity and subjectivity of any text in milliseconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-container">
+
+  <!-- ── Header ────────────────────────────────── -->
+  <header class="app-header">
+    <a href="/" class="logo">
+      <i class="fa-solid fa-brain logo-icon"></i>
+      <span class="logo-text">SentiScope</span>
+    </a>
+    <nav class="main-nav">
+      <a href="/about" class="nav-link">About</a>
+      <a href="/docs"  class="nav-link">Docs</a>
+      <a href="/api"   class="nav-link">API</a>
+      <button id="btn-search" class="icon-btn" aria-label="Search">
+        <i class="fa-solid fa-search"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ── Hero ──────────────────────────────────── -->
+  <main class="main-content">
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <i class="fa-solid fa-circle-dot"></i>
+        NLP Intelligence Engine · v4.2
+      </div>
+      <h1 class="hero-title">
+        Analyze the <span class="gradient-text">Sentiment</span><br>of Any Text
+      </h1>
+      <p class="hero-subtitle">
+        Uncover the hidden emotional layers behind every sentence.
+        Real-time polarity and subjectivity scoring, delivered in milliseconds.
+      </p>
+    </section>
+
+    <!-- ── Workspace ─────────────────────────────── -->
+    <section class="workspace">
+
+      <!-- Input (Left) -->
+      <div class="input-panel">
+        <span class="panel-label">Input</span>
+        <div class="textarea-wrapper">
+          <textarea id="text-input" placeholder="Paste or type your text here…" spellcheck="false"></textarea>
+          <div class="char-counter">
+            <span id="char-count">0</span>&nbsp;/ 5000
+          </div>
+        </div>
+
+        <button id="analyze-btn" class="primary-btn" disabled>
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>Analyze Sentiment</span>
+        </button>
+
+        <div class="system-stats">
+          <div class="stat-badge"><i class="fa-solid fa-cloud"></i> Tokyo-North-1</div>
+          <div class="stat-badge"><i class="fa-solid fa-bolt"></i> Sentiment-v4.2-Lrg</div>
+          <div class="stat-badge"><i class="fa-solid fa-shield-halved"></i> Private</div>
+        </div>
+      </div>
+
+      <!-- Results (Right) -->
+      <div class="results-panel">
+
+        <!-- Placeholder -->
+        <div id="results-placeholder" class="glass-card full-height center-content">
+          <div class="placeholder-icon-wrap">
+            <div class="pulse-ring"></div>
+            <div class="pulse-ring-2"></div>
+            <i class="fa-solid fa-wave-square icon-xl text-muted"></i>
+          </div>
+          <p class="text-muted" style="font-family:var(--font-label);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;">
+            Awaiting sequence…
+          </p>
+        </div>
+
+        <!-- Loading -->
+        <div id="results-loading" class="glass-card full-height center-content hidden">
+          <div class="spinner"></div>
+          <p class="loading-text mt-4">Processing natural language…</p>
+        </div>
+
+        <!-- Result -->
+        <div id="results-card" class="glass-card hidden">
+          <div class="card-header">
+            <span class="card-title">Primary Analysis</span>
+            <div class="card-status-dot"></div>
+          </div>
+
+          <!-- Sentiment hero -->
+          <div class="sentiment-display">
+            <div class="sentiment-emoji" id="result-emoji">😐</div>
+            <div class="sentiment-info">
+              <div class="sentiment-label" id="result-sentiment">NEUTRAL</div>
+              <div class="sentiment-sublabel">Sentiment Classification</div>
+            </div>
+          </div>
+
+          <!-- Gauges -->
+          <div class="metrics-container">
+            <div class="metric-group">
+              <div class="metric-header">
+                <span class="metric-label">Polarity Score</span>
+                <span class="metric-value" id="polarity-val">0.00</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-bar polarity-bar" id="polarity-bar" style="width:50%"></div>
+              </div>
+              <div class="metric-scale">
+                <span>Negative (−1.0)</span>
+                <span>Positive (+1.0)</span>
+              </div>
+            </div>
+
+            <div class="metric-group">
+              <div class="metric-header">
+                <span class="metric-label">Subjectivity Score</span>
+                <span class="metric-value" id="subjectivity-val">0.00</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-bar subjectivity-bar" id="subjectivity-bar" style="width:0%"></div>
+              </div>
+              <div class="metric-scale">
+                <span>Objective (0.0)</span>
+                <span>Subjective (1.0)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details row -->
+          <div class="analysis-details">
+            <div class="detail-item">
+              <span class="detail-label">Words</span>
+              <span class="detail-value" id="word-count">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Characters</span>
+              <span class="detail-value" id="char-count-result">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Latency</span>
+              <span class="detail-value" id="latency-val">—</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <i class="fa-solid fa-microchip"></i>
+            <span id="timing-info">Verified Analysis · Ready</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="#" id="link-privacy">Privacy</a>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+    <p class="aesthetic-note">The Luminous Observer © 2026</p>
+  </footer>
+
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

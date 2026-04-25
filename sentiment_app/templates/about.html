@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — SentiScope</title>
+  <meta name="description" content="Learn about SentiScope's mission to democratize AI-powered sentiment analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app-container">
+
+  <!-- Header -->
+  <header class="app-header">
+    <a href="/" class="logo">
+      <i class="fa-solid fa-brain logo-icon"></i>
+      <span class="logo-text">SentiScope</span>
+    </a>
+    <nav class="main-nav">
+      <a href="/about" class="nav-link active">About</a>
+      <a href="/docs"  class="nav-link">Docs</a>
+      <a href="/api"   class="nav-link">API</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="inner-page">
+    <div class="inner-hero">
+      <div class="hero-eyebrow"><i class="fa-solid fa-circle-dot"></i> About Us</div>
+      <h1 class="hero-title">The <span class="gradient-text">Luminous Observer</span></h1>
+      <p>Building high-precision, developer-first NLP tooling for the modern web.</p>
+    </div>
+
+    <div class="glass-card content-card">
+
+      <div class="section-block">
+        <h3><i class="fa-solid fa-bullseye" style="margin-right:.5rem;"></i>Our Mission</h3>
+        <p>SentiScope is designed to be the ultimate ethereal intelligence engine, providing fast and reliable sentiment analysis. Whether you're tracking brand sentiment, analyzing customer feedback, or exploring the emotional layers of your own writing — our engine classifies natural language in milliseconds with no overhead.</p>
+        <div class="capability-chips" style="margin-top:1.25rem;">
+          <span class="chip chip-positive"><i class="fa-solid fa-check"></i> Real-time analysis</span>
+          <span class="chip chip-positive"><i class="fa-solid fa-check"></i> No data stored</span>
+          <span class="chip chip-positive"><i class="fa-solid fa-check"></i> Developer-first API</span>
+          <span class="chip chip-primary"><i class="fa-solid fa-star"></i> Open source</span>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h3><i class="fa-solid fa-microchip" style="margin-right:.5rem;"></i>Technology Stack</h3>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <i class="fa-brands fa-python"></i>
+            <h4>Python & Flask</h4>
+            <p>Lightweight, production-ready REST backend serving analysis results with minimal latency.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fa-solid fa-language"></i>
+            <h4>TextBlob NLP</h4>
+            <p>Lexicon-based sentiment engine with Naive Bayes classifier for reliable polarity scoring.</p>
+          </div>
+          <div class="tech-item">
+            <i class="fa-solid fa-palette"></i>
+            <h4>The Luminous Observer UI</h4>
+            <p>Custom design system built with Inter + Space Grotesk for premium typographic hierarchy.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="/" class="return-btn">
+        <i class="fa-solid fa-arrow-left"></i> Return to Analyzer
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="#" id="link-privacy">Privacy</a>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <p class="aesthetic-note">The Luminous Observer © 2026</p>
+  </footer>
+
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
